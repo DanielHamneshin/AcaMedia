@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "commit": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-git"
+    }
   },
   "dependencies": {
     "next": "16.2.2",
