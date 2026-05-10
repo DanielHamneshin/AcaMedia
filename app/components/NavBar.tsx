@@ -1,11 +1,10 @@
 import { auth, signOut } from "@/auth"
 import Link from "next/link"
-import { redirect } from "next/navigation";
 
 const NavBar = async () => {
     const session = await auth();
-    let firstName = session?.user?.name?.split(" ")[0];
-    let lastName = session?.user?.name?.split(" ")[1];
+    const firstName = session?.user?.name?.split(" ")[0];
+    const lastName = session?.user?.name?.split(" ")[1];
     return (
         <nav className="flex items-center gap-2 p-2 w-full">
             <Link href="/" className="flex items-center gap-2 p-2">
