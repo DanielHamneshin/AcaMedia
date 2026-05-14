@@ -1,6 +1,8 @@
 import { auth, signOut } from "@/auth";
 import Link from "next/link";
 
+
+// TODO: style with dark mode and add dropdown menu
 const AuthButton = async () => {
     const session = await auth();
     const firstName = session?.user?.name?.split(" ")[0];
