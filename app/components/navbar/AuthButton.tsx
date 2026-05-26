@@ -8,7 +8,7 @@ const AuthButton = async () => {
     const session = await auth();
 
     return (
-        <div className="ml-auto flex items-center gap-2">
+        <div className="flex items-center gap-2">
             {session ?
                 <div>
                     <UserMenu name={session.user?.name} image={session.user?.image} />
