@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
 
-    // TODO: get theme from localstorage
+    // TODO: get theme from localstorage or cookies
     // ! const savedTheme = localStorage.getItem("theme") as "light" | "dark";
 
     const [toggle, setToggle] = useState<"light" | "dark">("light");
@@ -27,7 +27,7 @@ const ThemeToggle = () => {
 
 
     return (
-        <div className="flex flex-wrap items-center justify-center gap-12 ml-auto">
+        <div className="flex flex-wrap items-center justify-center">
             <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
                 <input
                     onChange={handleToggle}
