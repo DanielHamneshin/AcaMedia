@@ -44,13 +44,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                String         @id @default(cuid())
+  name              String?
+  email             String?        @unique
+  emailVerified     DateTime?      @map("email_verified")
+  image             String?
+  accounts          Account[]
+  sessions          Session[]
+  coursesMembership CourseMember[]
 
   @@map("users")
 }
@@ -62,4 +63,26 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members CourseMember[]
+}
+
+model CourseMember {
+  id       String @id @default(cuid())
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+
+  joinedAt DateTime @default(now())
+
+  @@unique([courseId, userId])
 }
