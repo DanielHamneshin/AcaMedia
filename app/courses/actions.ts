@@ -1,6 +1,6 @@
 'use server';
 
-import { createCourseService, getAllCoursesService } from "@/server/courses/course.service";
+import { createCourseService, getAllCoursesService } from "@/server/course/course.service";
 
 
 export const createCourse = async (fromData: FormData) => {
