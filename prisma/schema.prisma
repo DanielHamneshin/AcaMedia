@@ -44,14 +44,15 @@ model Session {
 }
 
 model User {
-  id                String         @id @default(cuid())
-  name              String?
-  email             String?        @unique
-  emailVerified     DateTime?      @map("email_verified")
-  image             String?
-  accounts          Account[]
-  sessions          Session[]
-  coursesMembership CourseMember[]
+  id                    String             @id @default(cuid())
+  name                  String?
+  email                 String?            @unique
+  emailVerified         DateTime?          @map("email_verified")
+  image                 String?
+  accounts              Account[]
+  sessions              Session[]
+  coursesMembership     CourseMember[]
+  studyGroupsMembership StudyGroupMember[]
 
   @@map("users")
 }
@@ -85,4 +86,29 @@ model CourseMember {
   joinedAt DateTime @default(now())
 
   @@unique([courseId, userId])
+}
+
+model StudyGroup {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members StudyGroupMember[]
+}
+
+model StudyGroupMember {
+  id String @id
+
+  userId       String
+  studyGroupId String
+
+  joinedAt DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id])
+  studyGroup StudyGroup @relation(fields: [studyGroupId], references: [id])
+
+  @@unique([userId, studyGroupId])
 }
