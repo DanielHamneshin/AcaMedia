@@ -100,7 +100,7 @@ model StudyGroup {
 }
 
 model StudyGroupMember {
-  id String @id
+  id String @id @default(cuid())
 
   userId       String
   studyGroupId String
